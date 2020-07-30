@@ -1,0 +1,23 @@
+O que é CRON?
+O CRON é um recurso utilizado no servidor que pode ser considerado um orquestrador de execução de tarefas baseadas em tempo configurados.
+O CRON pode ser configurado para executar tarefas em tempos fixos, datas específicas ou intervalos de tempo.
+O CRON é um utilizado por serviços de hospedagens que precisam realizar backups de servidores em nuvem, ou seja, uma tarefa é registrada e todo determinado dia do mês, ou a cadas x meses, o servidor irá executar o download dos arquivos do servidor para salvar em outro local pré estabelecido.
+
+No passado você tinha que criar um CRON para cada tarefa a ser executada.
+E o processo poderia ser muito penoso porque você teria que ter acesso via ssh para acessar o seu servidor para criar novos crons para novas tarefas.
+
+O LARAVEL SCHEDULE permite que você faça este processo de forma programatica apenas através do Laravel mesmo.
+Você vai precisar apenas criar um CRON no servidor e a partir dele você pode criar quantas tarefas forem necessárias com o laravel schedule.
+
+O método que gerencia isso está do arquivo app/Console/Kernel.php e o método responsável é chamado de schedule.
+
+/**
+* Define the application's command schedule.
+*
+* @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+* @return void
+*/
+protected function schedule(Schedule $schedule)
+{
+    // $schedule->command('inspire')->hourly();
+}
