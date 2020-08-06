@@ -4,23 +4,23 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use App\User;
+use Illuminate\Support\Facades\Log;
 
-class printHour extends Command
+class OpenedOrders extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:printHour';
+    protected $signature = 'command:count-open';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'This command will clean users database';
+    protected $description = 'Contagem de ordens aberta';
 
     /**
      * Create a new command instance.
@@ -39,8 +39,8 @@ class printHour extends Command
      */
     public function handle()
     {
-        DB::table('users')->delete();
-        factory(User::class, 20)->create();
-        echo "this task has been completed";
+        $openedOrders = DB::table('orders')->where('status', '=', '0')->get();
+        $count = count($openedOrders);
+        Log::info((string)$count, (array)$openedOrders);
     }
 }
